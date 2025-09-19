@@ -1,0 +1,9 @@
+.vibe-svg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0; /* above body/backgrounds, below leaves/content */
+  pointer-events: none;
+}
+/* When using slice, no letterboxing appears; background helpers not needed */

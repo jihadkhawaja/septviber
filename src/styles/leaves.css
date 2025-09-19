@@ -1,4 +1,4 @@
-.leaves { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.leaves { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
 .leaf { position: absolute; top: -10vh; animation-name: fall, sway; animation-iteration-count: infinite; will-change: transform; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25)); }
 @keyframes fall {
   0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }

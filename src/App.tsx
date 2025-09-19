@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { FallingLeaves } from './components/FallingLeaves'
+import { SvgVibeClock } from './components/SvgVibeClock'
 import { NoteEditor } from './components/NoteEditor'
 import { NotesList, Note } from './components/NotesList'
 import { SearchBar } from './components/SearchBar'
@@ -57,6 +58,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      <SvgVibeClock />
       <FallingLeaves count={20} />
       <header className="app-header">
         <h1>SeptViber</h1>
@@ -69,9 +71,17 @@ export default function App() {
           >
             {theme === 'day' ? '🌇 Afternoon' : '🌙 Night'}
           </button>
-          <label className="checkbox">
-            <input type="checkbox" checked={showPinnedOnly} onChange={e => setShowPinnedOnly(e.target.checked)} />
-            Pinned only
+          <label className="toggle" aria-label="Pinned only">
+            <input
+              type="checkbox"
+              checked={showPinnedOnly}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setShowPinnedOnly(e.target.checked)}
+              aria-checked={showPinnedOnly}
+            />
+            <span className="track" aria-hidden>
+              <span className="thumb" />
+            </span>
+            <span className="toggle-label">Pinned only</span>
           </label>
         </div>
       </header>
@@ -81,10 +91,10 @@ export default function App() {
         <NoteEditor onAdd={addNote} />
         <NotesList
           notes={filtered}
-          onPin={id => updateNote(id, { pinned: true })}
-          onUnpin={id => updateNote(id, { pinned: false })}
+          onPin={(id: string) => updateNote(id, { pinned: true })}
+          onUnpin={(id: string) => updateNote(id, { pinned: false })}
           onDelete={deleteNote}
-          onEdit={(id, title, content) => updateNote(id, { title, content })}
+          onEdit={(id: string, title: string, content: string) => updateNote(id, { title, content })}
         />
       </main>
 
