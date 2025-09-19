@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import '../styles/fractal-zoom.css'
 
 // Mandelbrot zoom overlay with transparent background so it blends over the image
-export function FractalLeavesZoom() {
+export function FractalLeavesZoom({ vibe = 0.25 }: { vibe?: number }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const [themeToken, setThemeToken] = useState(0)
 
@@ -23,10 +23,27 @@ export function FractalLeavesZoom() {
     const TARGET_CX = -0.743643887037151
     const TARGET_CY = 0.13182590420533
 
-    // Tunables
-    const MAX_ITER = 96
-    const ZOOM_SPEED = 1.0012
-    const QUALITY = 0.01 // 60% resolution buffer, scaled up
+    // Tunables derived from a single "vibe" control (0..1)
+    const v = Math.max(0, Math.min(1, vibe))
+    const isNightTheme = document.documentElement.dataset.theme === 'night'
+
+    // QUALITY: interpolate in log-space for a perceptually nicer ramp.
+    const MIN_Q = 0.005
+    const MAX_Q = 0.5
+    const qualityLog = Math.log(MIN_Q) + (Math.log(MAX_Q) - Math.log(MIN_Q)) * v
+    let QUALITY = Math.exp(qualityLog)
+    QUALITY *= isNightTheme ? 1.1 : 0.95
+    QUALITY = Math.max(MIN_Q, Math.min(1, QUALITY))
+
+    // MAX_ITER: more detail as vibe increases (ease-in to emphasize high-end detail)
+    const baseDetail = 24 + (192 - 24) * (v * v) // easeInQuad
+    let MAX_ITER = Math.round(baseDetail * (isNightTheme ? 1.15 : 1))
+    MAX_ITER = Math.max(16, Math.min(320, MAX_ITER))
+
+    // ZOOM_SPEED: faster zoom with higher vibe; slightly slower at night
+    const baseSpeed = 1.0008 + (1.0022 - 1.0008) * v
+    let ZOOM_SPEED = baseSpeed + (isNightTheme ? -0.00015 : 0.00005)
+    ZOOM_SPEED = Math.max(1.0005, Math.min(1.004, ZOOM_SPEED))
 
     let zoom = 200
     let raf = 0
@@ -166,7 +183,7 @@ export function FractalLeavesZoom() {
       window.removeEventListener('resize', handleResize)
       obs.disconnect()
     }
-  }, [themeToken])
+  }, [themeToken, vibe])
 
   return <canvas className="fractal-zoom" ref={canvasRef} aria-hidden />
 }

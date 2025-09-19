@@ -1,1 +1,32 @@
 /* App scoped tweaks if needed later */
+
+.app-header .header-actions {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.slider-group {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.25rem 0.5rem;
+	background: color-mix(in oklab, var(--panel) 85%, transparent);
+	border-radius: 999px;
+}
+
+.slider-group input[type="range"] {
+	width: 140px;
+}
+
+.slider-label {
+	font-size: 0.85rem;
+	opacity: 0.8;
+}
+
+.slider-value {
+	font-variant-numeric: tabular-nums;
+	width: 3.6ch;
+	text-align: right;
+	opacity: 0.8;
+}

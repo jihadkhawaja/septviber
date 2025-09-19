@@ -11,6 +11,8 @@ import './styles/app.css'
 const STORAGE_KEY = 'septviber:notes'
 
 export default function App() {
+  // Global vibe (0..1): blends quality, detail, and zoom speed
+  const [vibe, setVibe] = useState<number>(0.25)
   const [notes, setNotes] = useState<Note[]>(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
@@ -60,7 +62,7 @@ export default function App() {
   return (
     <div className="app-shell">
   <ImageBackdrop />
-      <FractalLeavesZoom />
+  <FractalLeavesZoom vibe={vibe} />
       <FallingLeaves count={20} />
       <header className="app-header">
         <h1>SeptViber</h1>
@@ -85,6 +87,20 @@ export default function App() {
             </span>
             <span className="toggle-label">Pinned only</span>
           </label>
+          <div className="slider-group" title="Vibe">
+            <label className="slider-label" htmlFor="vibe-range">Vibe</label>
+            <input
+              id="vibe-range"
+              type="range"
+              min={0}
+              max={1}
+              step={0.01}
+              value={vibe}
+              onChange={(e) => setVibe(parseFloat(e.target.value))}
+              aria-label="Vibe slider controlling fractal quality, detail, and speed"
+            />
+            <span className="slider-value">{Math.round(vibe * 100)}%</span>
+          </div>
         </div>
       </header>
 
