@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { createPortal } from 'react-dom'
 import '../styles/image-backdrop.css'
 
 export function ImageBackdrop() {
@@ -49,11 +50,9 @@ export function ImageBackdrop() {
     : '/images/leaves_background-light.jpg'
   const clockUrl = '/images/digital-clock-radio.jpg'
 
-  return (
-    <div className={`image-backdrop ${isNight ? 'night' : 'day'}`} data-theme-token={themeToken} aria-hidden>
-  <img className="bg-img" src={bgUrl} alt="Cozy bedroom background" loading="eager" decoding="async" />
-      <div className="clock-wrap">
-  <svg className="clock-svg" viewBox="0 0 360 150" preserveAspectRatio="xMidYMid meet" aria-label="Digital clock">
+  const clock = (
+    <div className="clock-wrap" aria-hidden>
+      <svg className="clock-svg" viewBox="0 0 360 150" preserveAspectRatio="xMidYMid meet" aria-label="Digital clock">
           <defs>
             <linearGradient id="clockBodyLight" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#f3f4f6" />
@@ -106,7 +105,15 @@ export function ImageBackdrop() {
           <rect x="290" y="116" width="12" height="12" rx="3" fill={isNight ? '#94a3b8' : '#9ca3af'} />
           <rect x="308" y="116" width="12" height="12" rx="3" fill={isNight ? '#94a3b8' : '#9ca3af'} />
         </svg>
-      </div>
     </div>
+  )
+
+  return (
+    <>
+      <div className={`image-backdrop ${isNight ? 'night' : 'day'}`} data-theme-token={themeToken} aria-hidden>
+        <img className="bg-img" src={bgUrl} alt="Cozy bedroom background" loading="eager" decoding="async" />
+      </div>
+      {typeof document !== 'undefined' ? createPortal(clock, document.body) : null}
+    </>
   )
 }

@@ -1,17 +1,27 @@
 .fractal-zoom {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1; /* above image backdrop, below leaves and content */
-  pointer-events: none;
-  opacity: 0.65;
-  mix-blend-mode: normal;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    /* above image backdrop, below leaves and content */
+    pointer-events: none;
+    opacity: var(--fractal-opacity, 0.95);
+    mix-blend-mode: normal;
 }
 
-:root[data-theme="day"] .fractal-zoom { --fractal-opacity: 0.55; mix-blend-mode: overlay; }
-:root[data-theme="night"] .fractal-zoom { --fractal-opacity: 0.38; mix-blend-mode: screen; }
+:root[data-theme="day"] .fractal-zoom {
+    --fractal-opacity: 0.55;
+    mix-blend-mode: overlay;
+}
+
+:root[data-theme="night"] .fractal-zoom {
+    --fractal-opacity: 0.38;
+    mix-blend-mode: screen;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .fractal-zoom { opacity: calc(var(--fractal-opacity, 0.28) * 0.9); }
+    .fractal-zoom {
+        opacity: calc(var(--fractal-opacity, 0.28) * 0.9);
+    }
 }
