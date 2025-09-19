@@ -44,10 +44,11 @@ export function ImageBackdrop() {
 
   // Royalty-free images via Unsplash source API (featured). These URLs return free-to-use images.
   // Note: You can replace these with specific image URLs if you prefer fixed assets.
-  // Use local images provided in public/images
+  // Use local images provided in public/images; prefix with BASE_URL for GitHub Pages
+  const base = import.meta.env.BASE_URL
   const bgUrl = isNight
-    ? '/images/leaves_background-dark.jpg'
-    : '/images/leaves_background-light.jpg'
+    ? `${base}images/leaves_background-dark.jpg`
+    : `${base}images/leaves_background-light.jpg`
   const clockUrl = '/images/digital-clock-radio.jpg'
 
   const clock = (

@@ -1,4 +1,4 @@
-# SeptViber — Cozy September Notes (React + TS)
+# Septviber — Cozy September Notes (React + TS)
 
 A cozy September‑vibe notes app with falling leaves, built for the Codédex September 2025 Vibe Coding Challenge.
 
@@ -8,6 +8,10 @@ A cozy September‑vibe notes app with falling leaves, built for the Codédex Se
 - Day/Night theme toggle
 - 🍁 Falling leaves animation with reduced-motion support
 - 🎵 AI‑generated background music created with Udio (https://www.udio.com/)
+
+Live: https://jihadkhawaja.github.io/septviber/
+
+Repo: https://github.com/jihadkhawaja/septviber
 
 Timebox: The whole website vibe was coded with GitHub Copilot in VS Code within ~3 hours.
 
@@ -45,22 +49,32 @@ npm run build
 npm run preview
 ```
 
-## Deploy (GitHub Pages)
+## Deploy to GitHub Pages
 
-This repo includes two options:
+GitHub Pages serves your site at a repository subpath (e.g. `https://<user>.github.io/septviber/`). This project is configured accordingly:
 
-1) Manual deploy to gh-pages branch:
+- `vite.config.ts` sets `base: '/septviber/'`.
+- Public assets (in `public/`) are referenced with `import.meta.env.BASE_URL` to avoid 404s.
+
+Examples for asset URLs:
+
+- Public asset (e.g. `public/images/pic.jpg`):
+  - `const url = import.meta.env.BASE_URL + 'images/pic.jpg'`
+- Bundled asset (place under `src/assets`):
+  - `const url = new URL('../assets/pic.jpg', import.meta.url).href`
+
+Deploy manually to the `gh-pages` branch:
 
 ```pwsh
+npm run build
 npm run deploy
 ```
 
-2) GitHub Actions Pages deploy on push to main (recommended):
-- Push to `main` and the workflow at `.github/workflows/deploy.yml` builds and publishes `dist/`.
-- In your repo Settings > Pages, set Source to "GitHub Actions".
+Optional local preview with the Pages base:
 
-If your repo is `<user>/<repo>`, the site will be at `https://<user>.github.io/<repo>/`.
-
+```pwsh
+npx vite preview --base=/septviber/ --port 5174
+```
 ## How Copilot helped
 
 - End‑to‑end scaffolding in a timebox (app shell, components, hooks)

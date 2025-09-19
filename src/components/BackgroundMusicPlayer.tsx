@@ -60,12 +60,13 @@ function IconMute(props: React.SVGProps<SVGSVGElement>) {
 
 export function BackgroundMusicPlayer() {
   // Build playlist referencing files in public/music
+  const base = import.meta.env.BASE_URL
   const tracks = useMemo(
     () => [
-      { src: '/music/Falling Leaf Dreams.mp3', title: 'Falling Leaf Dreams' },
-      { src: '/music/Falling Leaves.mp3', title: 'Falling Leaves' },
+      { src: `${base}music/Falling Leaf Dreams.mp3`, title: 'Falling Leaf Dreams' },
+      { src: `${base}music/Falling Leaves.mp3`, title: 'Falling Leaves' },
     ],
-    []
+    [base]
   )
 
   const player = useAudioQueue(tracks, { initialVolume: 0.35, persistKey: 'Septviber:bgmusic' })
