@@ -3,7 +3,7 @@
 html, body, #root { height: 100%; }
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: "Outfit", Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
   background: var(--bg);
 }
@@ -32,7 +32,7 @@ body {
   position: sticky;
   top: 0;
   backdrop-filter: blur(10px) saturate(1.1);
-  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  background: var(--appbar-bg);
   border-bottom: 1px solid var(--border);
   z-index: 10;
 }
@@ -41,6 +41,7 @@ body {
   margin: 0;
   font-family: "DM Serif Display", Georgia, serif;
   letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px color-mix(in oklab, #000 15%, transparent);
 }
 
 .header-actions { display: flex; align-items: center; gap: 12px; }
@@ -70,17 +71,18 @@ body {
 }
 .toggle .thumb {
   position: absolute;
-  top: 2px;
+  top: 50%;
   left: 2px;
   width: 22px;
   height: 22px;
   background: var(--thumb);
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transform: translateY(-50%);
   transition: transform 200ms ease;
 }
 .toggle input:checked + .track { background: var(--track-on); border-color: color-mix(in oklab, var(--accent) 35%, var(--border)); }
-.toggle input:checked + .track .thumb { transform: translateX(20px); }
+.toggle input:checked + .track .thumb { transform: translate(20px, -50%); }
 .toggle .toggle-label { font-size: 0.95rem; color: var(--text); }
 
 .toggle input:focus-visible + .track {
@@ -94,11 +96,12 @@ body {
 
 .pill {
   border: 1px solid var(--border);
-  background: var(--card-bg);
+  background: var(--panel);
   color: var(--text);
   padding: 8px 12px;
   border-radius: 999px;
   cursor: pointer;
+  text-shadow: 0 1px 1px color-mix(in oklab, #000 10%, transparent);
 }
 
 .content {

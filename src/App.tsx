@@ -7,8 +7,9 @@ import { NotesList, Note } from './components/NotesList'
 import { SearchBar } from './components/SearchBar'
 import './styles/theme.css'
 import './styles/app.css'
+import BackgroundMusicPlayer from './components/BackgroundMusicPlayer'
 
-const STORAGE_KEY = 'septviber:notes'
+const STORAGE_KEY = 'Septviber:notes'
 
 export default function App() {
   // Global vibe (0..1): blends quality, detail, and zoom speed
@@ -64,8 +65,9 @@ export default function App() {
   <ImageBackdrop />
   <FractalLeavesZoom vibe={vibe} />
       <FallingLeaves count={20} />
+      <BackgroundMusicPlayer />
       <header className="app-header">
-        <h1>SeptViber</h1>
+        <h1>Septviber</h1>
         <div className="header-actions">
           <button
             className="pill"

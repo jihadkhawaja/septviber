@@ -18,7 +18,7 @@
 .image-backdrop .clock-wrap {
   position: absolute;
   right: min(3vw, 24px);
-  bottom: min(4vh, 28px);
+  bottom: calc(min(4vh, 28px) + 100px);
   width: clamp(240px, 40vw, 520px);
   aspect-ratio: 2.4 / 1;
   display: grid;
@@ -39,7 +39,7 @@
 .clock-wrap {
   position: fixed;
   right: min(3vw, 24px);
-  bottom: min(4vh, 28px);
+  bottom: calc(min(4vh, 28px) + 100px);
   width: clamp(240px, 40vw, 520px);
   aspect-ratio: 2.4 / 1;
   display: grid;
