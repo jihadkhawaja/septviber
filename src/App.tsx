@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { FallingLeaves } from './components/FallingLeaves'
 import { ImageBackdrop } from './components/ImageBackdrop'
+import { FractalLeavesZoom } from './components/FractalLeavesZoom'
 import { NoteEditor } from './components/NoteEditor'
 import { NotesList, Note } from './components/NotesList'
 import { SearchBar } from './components/SearchBar'
@@ -59,6 +60,7 @@ export default function App() {
   return (
     <div className="app-shell">
   <ImageBackdrop />
+      <FractalLeavesZoom />
       <FallingLeaves count={20} />
       <header className="app-header">
         <h1>SeptViber</h1>

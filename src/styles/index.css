@@ -189,7 +189,7 @@ body {
 }
 
 .note { display: grid; grid-template-rows: auto 1fr auto; min-height: 220px; position: relative; z-index: 2; }
-.note-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 12px 0; }
+.note-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 12px 0; margin-bottom: 12px; }
 .note-title {
   font-weight: 700;
   width: 100%;
@@ -211,6 +211,9 @@ body {
   color: var(--text);
   padding: 10px 12px;
   border-radius: 10px;
+  margin: 0 12px;
+  resize: vertical;
+  width: calc(100% - 24px);
 }
 .note-content:focus { outline: none; border-color: color-mix(in oklab, var(--accent) 35%, var(--border)); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent); }
 
