@@ -1,0 +1,17 @@
+:root,[data-theme="day"]{
+  --bg: linear-gradient(180deg, #fff6eb, #ffe7ce);
+  --text: #3a2a1a;
+  --muted: #6b5a4a;
+  --border: #e7d8c7;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --accent: #e08b3a; /* pumpkin spice */
+}
+
+[data-theme="night"]{
+  --bg: linear-gradient(180deg, #1a1a2e, #16213e);
+  --text: #f2f2f7;
+  --muted: #a1a1b5;
+  --border: #2b2b45;
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --accent: #9fa8da; /* cozy moon */
+}
