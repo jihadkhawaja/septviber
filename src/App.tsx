@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { FallingLeaves } from './components/FallingLeaves'
-import { SvgVibeClock } from './components/SvgVibeClock'
+import { ImageBackdrop } from './components/ImageBackdrop'
 import { NoteEditor } from './components/NoteEditor'
 import { NotesList, Note } from './components/NotesList'
 import { SearchBar } from './components/SearchBar'
@@ -58,7 +58,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <SvgVibeClock />
+  <ImageBackdrop />
       <FallingLeaves count={20} />
       <header className="app-header">
         <h1>SeptViber</h1>

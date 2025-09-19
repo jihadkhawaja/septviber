@@ -2,8 +2,8 @@
   --bg: linear-gradient(180deg, #fff6eb, #ffe7ce);
   --text: #3a2a1a;
   --muted: #6b5a4a;
-  --border: #e7d8c7;
-  --card-bg: rgba(255, 255, 255, 0.7);
+  --border: #d7c6b4;
+  --card-bg: rgba(255, 255, 255, 0.85);
   --accent: #e08b3a; /* pumpkin spice */
 }
 
@@ -11,7 +11,7 @@
   --bg: linear-gradient(180deg, #1a1a2e, #16213e);
   --text: #f2f2f7;
   --muted: #a1a1b5;
-  --border: #2b2b45;
-  --card-bg: rgba(255, 255, 255, 0.06);
+  --border: #334155; /* slate-700-ish for better edge contrast */
+  --card-bg: rgba(15, 23, 42, 0.6); /* slate-900 with alpha */
   --accent: #9fa8da; /* cozy moon */
 }
